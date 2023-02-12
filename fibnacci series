@@ -1,0 +1,19 @@
+# Function to generate the nth Fibonacci number
+fibonacci <- function(n) {
+  if (n <= 0) {
+    return(0)
+  } else if (n == 1) {
+    return(1)
+  } else {
+    return(fibonacci(n-1) + fibonacci(n-2))
+  }
+}
+
+# Generate the first 10 Fibonacci numbers
+numbers <- c()
+for (i in 1:10) {
+  numbers <- c(numbers, fibonacci(i))
+}
+
+# Print the first 10 Fibonacci numbers
+print(numbers)
