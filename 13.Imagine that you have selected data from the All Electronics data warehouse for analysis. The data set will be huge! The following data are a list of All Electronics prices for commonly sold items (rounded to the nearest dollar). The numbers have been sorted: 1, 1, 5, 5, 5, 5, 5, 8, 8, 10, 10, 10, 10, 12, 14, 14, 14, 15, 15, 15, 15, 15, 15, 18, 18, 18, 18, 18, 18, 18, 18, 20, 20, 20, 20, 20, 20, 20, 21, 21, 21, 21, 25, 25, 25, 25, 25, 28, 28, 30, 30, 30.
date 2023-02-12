@@ -1,0 +1,12 @@
+mean = sum(data) / length(data)
+library(ggplot2)
+
+data <- c(1, 1, 5, 5, 5, 5, 5, 8, 8, 10, 10, 10, 10, 12, 14, 14, 14, 15, 15, 15, 15, 15, 15, 18, 18, 18, 18, 18, 18, 18, 18, 20, 20, 20, 20, 20, 20, 20, 21, 21, 21, 21, 25, 25, 25, 25, 25, 28, 28, 30, 30, 30)
+
+
+mean <- mean(data)
+
+ggplot(data.frame(data), aes(x = data)) +
+  geom_histogram(binwidth = 1, fill = "blue", alpha = 0.5) +
+  xlab("Price") + ylab("Frequency") +
+  ggtitle("Histogram of All Electronics Prices")
