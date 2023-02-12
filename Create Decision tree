@@ -1,0 +1,14 @@
+cost <- 2
+good_revenue_no_expansion <- 4
+bad_revenue_no_expansion <- 1.5
+good_revenue_expansion <- 7
+bad_revenue_expansion <- 3
+
+good_prob <- 0.45
+bad_prob <- 0.55
+
+expansion_ev <- good_prob * (good_revenue_expansion - cost) + bad_prob * (bad_revenue_expansion - cost
+no_expansion_ev <- good_prob * good_revenue_no_expansion + bad_prob * bad_revenue_no_expansion
+
+print(paste("Expected value of expansion: $", expansion_ev))
+print(paste("Expected value of no expansion: $", no_expansion_ev))
