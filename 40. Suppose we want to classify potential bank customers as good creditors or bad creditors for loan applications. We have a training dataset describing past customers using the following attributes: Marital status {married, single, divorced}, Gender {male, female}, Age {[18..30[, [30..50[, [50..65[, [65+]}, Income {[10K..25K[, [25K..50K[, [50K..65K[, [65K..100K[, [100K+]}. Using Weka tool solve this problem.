@@ -1,0 +1,19 @@
+library(caret)
+set.seed(123)
+marital_status <- sample(c("married", "single", "divorced"), 100, replace = TRUE)
+gender <- sample(c("male", "female"), 100, replace = TRUE)
+age <- sample(c("[18..30[", "[30..50[", "[50..65[", "[65+]"), 100, replace = TRUE)
+income <- sample(c("[10K..25K[", "[25K..50K[", "[50K..65K[", "[65K..100K[", "[100K+]"), 100, replace = TRUE)
+
+df <- data.frame(marital_status, gender, age, income)
+df$marital_status <- as.factor(df$marital_status)
+df$gender <- as.factor(df$gender)
+df$age <- as.factor(df$age)
+df$income <- as.factor(df$income)
+index <- createDataPartition(df$income, p = 0.7, list = FALSE)
+train_data <- df[index, ]
+test_data <- df[-index, ]
+model <- train(income ~ ., data = train_data, method = "rf")
+predictions <- predict(model, newdata = test_data)
+confusionMatrix(predictions, test_data$income)
+
