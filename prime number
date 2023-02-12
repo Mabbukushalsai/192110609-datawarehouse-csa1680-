@@ -1,0 +1,22 @@
+get_primes <- function(n) {
+  primes <- c()
+  for (i in 2:n) {
+    is_prime <- TRUE
+    for (j in 2:(i-1)) {
+      if (i %% j == 0) {
+        is_prime <- FALSE
+        break
+      }
+    }
+    if (is_prime) {
+      primes <- c(primes, i)
+    }
+  }
+  return(primes)
+}
+
+
+primes <- get_primes(20)
+
+
+print(primes)
