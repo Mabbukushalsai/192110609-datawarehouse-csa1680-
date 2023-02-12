@@ -1,0 +1,9 @@
+library(ggplot2)
+
+df <- data.frame(Model = c("JRip", "J48"), 
+                 Accuracy = c(0.80, 0.82))
+
+ggplot(df, aes(x = Model, y = Accuracy, fill = Model)) +
+  geom_bar(stat = "identity", alpha = 0.5) +
+  xlab("Model") + ylab("Accuracy") +
+  ggtitle("Accuracy Comparison of Rule-Based and Decision Tree Models")
