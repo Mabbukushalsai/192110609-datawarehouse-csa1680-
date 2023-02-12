@@ -1,0 +1,8 @@
+library(dplyr)
+
+data <- c(200, 300, 400, 600, 1000)
+
+mean <- mean(data)
+std_dev <- sd(data)
+
+normalized_data <- (data - mean) / std_dev
