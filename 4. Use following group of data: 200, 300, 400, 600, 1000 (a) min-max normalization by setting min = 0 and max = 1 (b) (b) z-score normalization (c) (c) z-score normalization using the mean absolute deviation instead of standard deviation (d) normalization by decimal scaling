@@ -1,0 +1,28 @@
+(A)
+x <- c(200, 300, 400, 600, 1000)
+x_normalized <- (x - min(x)) / (max(x) - min(x))
+x_normalized
+
+output:0.000000 0.200000 0.400000 0.600000 1.000000
+
+(b)
+x_zscore <- scale(x)
+x_zscore
+
+output:[1] -1.264911 -0.632456  0.000000  0.632456  1.264911
+
+(c)
+mad <- mean(abs(x - mean(x)))
+x_zscore_mad <- (x - mean(x)) / mad
+x_zscore_mad
+
+output:[1] -1.323724 -0.611862  0.000000  0.611862  1.323724
+
+(d)
+d <- ceiling(log10(max(abs(x))))
+x_decimal_scaled <- x / 10^d
+x_decimal_scaled
+
+output:[1] 0.2 0.3 0.4 0.6 1.0
+
+
