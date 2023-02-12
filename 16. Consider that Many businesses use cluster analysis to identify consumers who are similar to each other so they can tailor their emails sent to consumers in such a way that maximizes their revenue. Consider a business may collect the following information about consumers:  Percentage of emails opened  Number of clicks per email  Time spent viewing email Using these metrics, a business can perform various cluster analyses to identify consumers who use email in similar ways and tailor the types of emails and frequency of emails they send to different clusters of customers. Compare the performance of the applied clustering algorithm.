@@ -1,0 +1,25 @@
+library(tidyverse)
+library(cluster)
+data <- read.csv("consumer_data.csv")
+
+sum(is.na(data))
+clean_data <- data[complete.cases(data), ]
+normalized_data <- scale(clean_data)
+
+km_model <- kmeans(normalized_data, centers = 3, nstart = 25)
+km_model
+
+hc_model <- hclust(dist(normalized_data), method = "ward.D2")
+hc_model
+
+par(mfrow = c(1, 2))
+plot(km_model$cluster, col = km_model$cluster)
+plot(km_model$centers, col = 1:3, pch = 8, cex = 2)
+
+
+plot(hc_model, main = "Hierarchical Clustering Results", cex = 0.6)
+
+table(km_model$cluster, km_model$cluster)
+
+
+table(hc_model$labels, hc_model$labels)
