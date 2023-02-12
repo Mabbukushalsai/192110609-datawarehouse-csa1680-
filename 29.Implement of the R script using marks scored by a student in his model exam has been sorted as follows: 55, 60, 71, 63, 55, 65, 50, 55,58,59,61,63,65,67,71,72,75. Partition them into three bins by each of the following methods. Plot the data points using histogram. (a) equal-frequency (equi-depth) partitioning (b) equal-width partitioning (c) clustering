@@ -1,0 +1,36 @@
+library(dplyr)
+library(tibble)
+library(ggplot2)
+
+data <- c(55, 60, 71, 63, 55, 65, 50, 55,58,59,61,63,65,67,71,72,75)
+
+
+equi_depth <- quantile(data, probs = c(0, 1/3, 2/3, 1))
+equi_depth_partitioned <- cut(data, breaks = equi_depth, labels = c("Low", "Medium", "High"), include.lowest = TRUE)
+
+min_value <- min(data)
+max_value <- max(data)
+width <- (max_value - min_value)/3
+equal_width <- seq(min_value, max_value, by = width)
+equal_width_partitioned <- cut(data, breaks = equal_width, labels = c("Low", "Medium", "High"), include.lowest = TRUE)
+
+kmeans_model <- kmeans(data, centers = 3)
+cluster_assignments <- as.factor(kmeans_model$cluster)
+levels(cluster_assignments) <- c("Low", "Medium", "High")
+
+data_tibble <- tibble(data = data, equi_depth_partitioned = equi_depth_partitioned, equal_width_partitioned = equal_width_partitioned, cluster_assignments = cluster_assignments)
+
+ggplot(data_tibble, aes(x = data)) + 
+  geom_histogram(binwidth = 5) + 
+  facet_wrap(~equi_depth_partitioned, ncol = 1, scales = "free_x") +
+  ggtitle("Histogram using Equi-Depth Partitioning")
+
+ggplot(data_tibble, aes(x = data)) + 
+  geom_histogram(binwidth = 5) + 
+  facet_wrap(~equal_width_partitioned, ncol = 1, scales = "free_x") +
+  ggtitle("Histogram using Equal-Width Partitioning")
+
+ggplot(data_tibble, aes(x = data)) + 
+  geom_histogram(binwidth = 5) + 
+  facet_wrap(~cluster_assignments, ncol = 1, scales = "free_x") +
+  ggtitle("Histogram using Clustering")
