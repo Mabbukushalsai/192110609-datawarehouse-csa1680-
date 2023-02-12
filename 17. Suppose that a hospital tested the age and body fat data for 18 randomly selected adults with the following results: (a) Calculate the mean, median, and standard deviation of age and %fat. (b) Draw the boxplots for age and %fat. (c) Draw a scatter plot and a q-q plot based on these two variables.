@@ -1,0 +1,38 @@
+library(ggplot2)
+
+library(quantreg)
+
+data <- data.frame(age = c(25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110), 
+                   fat = c(10, 12, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90))
+
+mean_age <- mean(data$age)
+median_age <- median(data$age)
+sd_age <- sd(data$age)
+
+mean_fat <- mean(data$fat)
+median_fat <- median(data$fat)
+sd_fat <- sd(data$fat)
+
+print(paste("Mean age:", mean_age))
+print(paste("Median age:", median_age))
+print(paste("Standard deviation of age:", sd_age))
+print(paste("Mean %fat:", mean_fat))
+print(paste("Median %fat:", median_fat))
+print(paste("Standard deviation of %fat:", sd_fat))
+
+ggplot(data, aes(x = "", y = age)) + 
+  geom_boxplot() +
+  labs(x = "Age", y = "") +
+  ggtitle("Box Plot of Age")
+
+ggplot(data, aes(x = "", y = fat)) + 
+  geom_boxplot() +
+  labs(x = "%Fat", y = "") +
+  ggtitle("Box Plot of %Fat")
+
+ggplot(data, aes(x = age, y = fat)) +
+  geom_point() +
+  labs(x = "Age", y = "%Fat") +
+  ggtitle("Scatter Plot of Age vs %Fat")
+
+qqplot(data$age, data$fat, xlab = "Age", ylab = "%Fat", main = "Q-Q Plot of Age vs %Fat")
