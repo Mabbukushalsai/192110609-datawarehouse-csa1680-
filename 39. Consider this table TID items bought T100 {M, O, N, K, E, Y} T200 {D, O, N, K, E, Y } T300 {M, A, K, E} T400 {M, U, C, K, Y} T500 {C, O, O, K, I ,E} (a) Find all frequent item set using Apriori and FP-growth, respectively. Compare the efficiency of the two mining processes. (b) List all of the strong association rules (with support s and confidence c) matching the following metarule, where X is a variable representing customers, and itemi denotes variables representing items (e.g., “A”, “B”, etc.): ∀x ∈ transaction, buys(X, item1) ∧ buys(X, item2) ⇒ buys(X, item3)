@@ -1,0 +1,28 @@
+library(arules)
+transactions = as(data.frame(TID = c("T100", "T200", "T300", "T400", "T500"), 
+                             items = c("M, O, N, K, E, Y", "D, O, N, K, E, Y", 
+                                       "M, A, K, E", "M, U, C, K, Y", "C, O, O, K, I, E")), 
+                 "transactions")
+frequent_itemsets = apriori(transactions, parameter = list(support = 0.5, confidence = 0.5))
+inspect(frequent_itemsets)
+library(arules)
+transactions = as(data.frame(TID = c("T100", "T200", "T300", "T400", "T500"), 
+                             items = c("M, O, N, K, E, Y", "D, O, N, K, E, Y", 
+                                       "M, A, K, E", "M, U, C, K, Y", "C, O, O, K, I, E")), 
+                 "transactions")
+frequent_itemsets = fpgrowth(transactions, parameter = list(support = 0.5, confidence = 0.5))
+inspect(frequent_itemsets)
+
+(b)
+library(arules)
+transactions = as(data.frame(TID = c("T100", "T200", "T300", "T400", "T500"), 
+                             items = c("M, O, N, K, E, Y", "D, O, N, K, E, Y", 
+                                       "M, A, K, E", "M, U, C, K, Y", "C, O, O, K, I, E")), 
+                 "transactions")
+rules = apriori(transactions, parameter = list(support = 0.5, confidence = 0.5))
+rules = sort(rules, by="confidence", decreasing=TRUE)
+inspect(rules)
+library(arules)
+transactions = as(data.frame(TID = c("T100", "T200", "T300", "T400", "T500"), 
+                             items = c("M, O, N, K, E, Y", "D, O, N, K, E, Y", 
+                                       "M, A, K, E", "M, U, C, K, Y", "C, O, O, K,
