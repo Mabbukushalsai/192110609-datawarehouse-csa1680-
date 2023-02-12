@@ -1,0 +1,12 @@
+library(rpart)
+
+x <- data.frame(Expand = c(0, 0, 1, 1),
+                Good_Economy = c(0, 1, 0, 1),
+                Revenue = c(1.5, 4, 3, 7))
+
+# Fit the Model
+fit <- rpart(Revenue ~ Expand + Good_Economy, data = x, method = "class")
+
+# Plot the Tree
+plot(fit, margin = 0.1, uniform = TRUE, compress = TRUE)
+text(fit, use.n = TRUE, all = TRUE, cex = 0.8)
