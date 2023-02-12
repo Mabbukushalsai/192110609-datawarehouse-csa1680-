@@ -1,0 +1,8 @@
+library(ggplot2)
+
+points <- c(75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 130)
+
+ggplot(data.frame(points), aes(x = "", y = points)) + 
+  geom_boxplot() +
+  labs(x = "Points Scored", y = "") +
+  ggtitle("Box Plot of Points Scored by Players")
