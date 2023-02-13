@@ -1,0 +1,4 @@
+a<-5
+i<-0
+fact<-0
+for(i<-0,i<a,i++){fact=fact*i}cat("the factorial of number")fact
