@@ -1,0 +1,21 @@
+# Load the required libraries
+library(tidyverse)
+
+# Load the diabetes dataset
+diabetes <- read.csv("diabetes.csv")
+
+# Perform some exploratory data analysis (EDA)
+summary(diabetes)
+str(diabetes)
+
+# Linear Regression: Age and Diabetes
+model1 <- lm(diabetes ~ age, data = diabetes)
+summary(model1)
+
+# Multiple Regression: Age, BMI, Physical activity, and Family history of diabetes
+model2 <- lm(diabetes ~ age + bmi + physical_activity + family_history_of_diabetes, data = diabetes)
+summary(model2)
+predictions1 <- predict(model1, newdata = diabetes)
+
+# Make predictions using the multiple regression model
+predictions2 <- predict(model2, newdata = diabetes)
